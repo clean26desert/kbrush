@@ -1,0 +1,21 @@
+<h2>users.show.html.erb</h2>
+<p>ユーザー画像:<%= attachment_image_tag @user, :user_img, :fill, 100, 100, fallback: "no_image.png" %></p>
+<p>ユーザーネーム:<%= @user.user_handle_name %></p>
+<p>紹介文:<%= @user.user_introduct %></p>
+
+<% @items.each do |item| %>
+	<p>商品名:<%= link_to item_path(item.id) do %><%= item.item_name %><% end %></p>
+	<p>商品画像:<%= link_to item_path(item.id) do %><%= attachment_image_tag item, :item_img, :fill, 100, 100 %><% end %></p>
+	<p>商品紹介文:<%= item.item_introduct %></p>
+	<p>添削条件設定</p>
+	<p>画像サイズ</p>
+	<p>B4:<% if item.item_limited_size_b4 == true %>○<% else %>×<% end %>A4:<% if item.item_limited_size_a4 == true %>○<% else %>×<% end %></p>
+<% end %>
+
+<% @alone_illusts.each do |alone_illust| %>
+	<p>イラスト名:<%= link_to alone_illust_path(alone_illust.id) do %><%= alone_illust.al_illust_name %><% end %></p>
+	<p>イラスト画像:<%= link_to alone_illust_path(alone_illust.id) do %><%= attachment_image_tag alone_illust, :al_illust_img, :fill, 100, 100 %><% end %></p>
+	<p>イラスト紹介文:<%= alone_illust.al_illust_introduct %></p>
+	<p>添削条件設定</p>
+	<p>画像サイズ:<%= alone_illust.size.size_name %></p>
+<% end %>

@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  item_img_id: MyString
+  item_name: MyString
+  item_introduct: MyString
+  item_attention: MyString
+  item_limited_size_b4: false
+  item_limited_size_a4: false
+  item_limited_style_real: false
+  item_limited_style_abstract: false
+  item_limited_coating_line: false
+  item_limited_coating_cg: false
+  item_limited_motif_person: false
+  item_limited_motif_nature_outside: false
+  item_limited_advice_composition: false
+  item_limited_advice_drawing: false
+  item_appo_flg: false
+
+two:
+  user_id: 1
+  item_img_id: MyString
+  item_name: MyString
+  item_introduct: MyString
+  item_attention: MyString
+  item_limited_size_b4: false
+  item_limited_size_a4: false
+  item_limited_style_real: false
+  item_limited_style_abstract: false
+  item_limited_coating_line: false
+  item_limited_coating_cg: false
+  item_limited_motif_person: false
+  item_limited_motif_nature_outside: false
+  item_limited_advice_composition: false
+  item_limited_advice_drawing: false
+  item_appo_flg: false

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  item_id: 1
+  passive_illust_id: 1
+  active_illust_id: 1
+  o_earlier_order_id: 1
+  status: 1
+
+two:
+  user_id: 1
+  item_id: 1
+  passive_illust_id: 1
+  active_illust_id: 1
+  o_earlier_order_id: 1
+  status: 1

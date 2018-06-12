@@ -1,0 +1,8 @@
+<h2>alone_illusts.show.html.erb</h2>
+<p>イラスト名:<%= @alone_illust.al_illust_name %></p>
+<p>イラスト画像:<%= attachment_image_tag @alone_illust, :al_illust_img, :fill, 300, 300 %></p>
+<p>イラスト紹介文:<%= @alone_illust.al_illust_introduct %></p>
+<p>添削条件設定</p>
+<p>ユーザーネーム:<%= link_to user_path(@alone_illust.user.id) do %><%= @alone_illust.user.user_handle_name %><% end %></p>
+<p>ユーザー画像:<%= link_to user_path(@alone_illust.user.id) do %><%= attachment_image_tag @alone_illust.user, :user_img, :fill, 100, 100 %><% end %></p>
+<p>作成日時:<%= @alone_illust.created_at.strftime('%Y/%m/%d') %></p>

@@ -1,0 +1,2 @@
+module ActiveIllustsHelper
+end

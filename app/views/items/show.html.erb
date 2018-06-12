@@ -1,0 +1,40 @@
+<h2>items.show.html.erb</h2>
+<p>&yen;1,000
+	<% if @item.user_id != current_user.id %>
+		<%= form_for(@order, url: item_orders_path(@item)) do |f| %>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-illust">イラストの選択</button>
+			<%= f.submit "申込", data: {confirm: "本当に<strong>#{@item.item_name}</strong>を申し込みますか？", cancel: "やめる", commit: "申込"}, title: "申込の確認", class: "btn btn-success white-text" %>
+			<div class="modal-fade" id="select-illust" tabindex="-1" role="dialog" aria-labelledby="select-illustLabel" aria-hidden="true">
+				<div class="modal-dialog" style="z-index: 1500" role="document">
+					<div class="modal-content" style="width:800px; margin-left: -100px;"><!-- デフォルトのwide600px,上回ると右に伸びるのでその分だけ左に寄せる -->
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h5 class="modal-title" id="select-illustLabel">添削してほしいイラストを選んでください</h5>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<% @cnt_illust = 0 %>
+								<% @alone_illusts.each do |alone_illust| %>
+									<% @cnt_illust += 1 %>
+									<p>イラスト名:<%= alone_illust.al_illust_name %></p>
+									<p>イラスト画像:<%= attachment_image_tag alone_illust, :al_illust_img, :fill, 100, 100 %></p>
+									<p>イラスト選択:<%= if @cnt_illust == 1 then f.radio_button :alone_illust_id, alone_illust.id, {checked: true} else f.radio_button :alone_illust_id, alone_illust.id end %></p>
+								<% end %>
+							</div>
+						</div>
+						<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button></div>
+					</div>
+				</div>
+			</div>
+			<style type="text/css">#select-illust{display :none}</style>
+		<% end %>
+	<% end %>
+</p>
+<p>商品名:<%= @item.item_name %></p>
+<p>商品画像:<%= attachment_image_tag @item, :item_img, :fill, 300, 300 %></p>
+<p>商品紹介文:<%= @item.item_introduct %></p>
+<p>添削条件設定</p>
+<p>B4:<% if @item.item_limited_size_b4 == true %>○<% else %>×<% end %>A4:<% if @item.item_limited_size_a4 == true %>○<% else %>×<% end %></p>
+<p>ユーザーネーム:<%= link_to user_path(@item.user.id) do %><%= @item.user.user_handle_name %><% end %></p>
+<p>ユーザー画像:<%= link_to user_path(@item.user.id) do %><%= attachment_image_tag @item.user, :user_img, :fill, 100, 100 %><% end %></p>
+<p>作成日時:<%= @item.created_at.strftime('%Y/%m/%d') %></p>

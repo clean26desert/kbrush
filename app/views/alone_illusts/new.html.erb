@@ -1,0 +1,18 @@
+<h2>alone_illusts.new.html.erb</h2>
+<%= form_for(@alone_illust, url: alone_illusts_path) do |f| %>
+	<% if @alone_illust.errors.any? %>
+	    <div id="error_explanation">
+			<h2><%= @alone_illust.errors.count %>件のエラーが発生しました。</h2>
+			<ul>
+			<% @alone_illust.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+	    </div>
+	<% end %>
+	<p><%= f.select :size_id, [["B4", "1"], ["A4", "2"]] %></p>
+	<p><%= f.attachment_field :al_illust_img %></p>
+	<p><%= f.text_field :al_illust_name, class:"form-control", placeholder:"イラスト名" %></p>
+	<p><%= f.text_area :al_illust_introduct, class:"form-control", placeholder:"紹介文" %></p>
+	<p><%= f.submit "送信", class:"btn btn-lg btn-block btn-base-1 mt-20" %></p>
+<% end %>

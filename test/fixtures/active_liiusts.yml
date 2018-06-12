@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  passive_illust_id: 1
+  a_illust_img_id: 1
+  a_illust_name: MyString
+  advice: MyString
+  a_value_clear: 1
+  a_value_match: 1
+  a_value_again: 1
+  a_value_comment: MyString
+  p_value_clear: 1
+  p_value_match: 1
+  p_value_again: 1
+  p_value_comment: MyString
+
+two:
+  user_id: 1
+  passive_illust_id: 1
+  a_illust_img_id: 1
+  a_illust_name: MyString
+  advice: MyString
+  a_value_clear: 1
+  a_value_match: 1
+  a_value_again: 1
+  a_value_comment: MyString
+  p_value_clear: 1
+  p_value_match: 1
+  p_value_again: 1
+  p_value_comment: MyString

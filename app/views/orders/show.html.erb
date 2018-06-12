@@ -1,0 +1,35 @@
+<h2>orders.show.html.erb</h2>
+
+<% if @order.status == 1 %>
+	<%= form_for(@active_illust, url: order_active_illusts_path(@order)) do |f| %>
+		<p><%= f.attachment_field :a_illust_img %></p>
+		<p><%= f.text_field :a_illust_name, class:"form-control", placeholder:"添削イラスト名" %></p>
+		<p><%= f.text_area :advice, class:"form-control", placeholder:"アドバイス" %></p>
+		<p>依頼内容が明確
+			<%= f.hidden_field :a_value_clear, id: :a_value_clear_rating %>
+			<div id='a-value-clear-star'></div>
+			<script>
+				$('#a-value-clear-star').raty({path: '/assets/', click: function(score, e) {
+				$("#a_value_clear_rating").val(score)}});
+			</script>
+		</p>
+		<p>サービス内容に合った依頼
+			<%= f.hidden_field :a_value_match, id: :a_value_match_rating %>
+			<div id='a-value-match-star'></div>
+			<script>
+				$('#a-value-match-star').raty({path: '/assets/', click: function(score, e) {
+				$("#a_value_match_rating").val(score)}});
+			</script>
+		</p>
+		<p>再び取引したい
+			<%= f.hidden_field :a_value_again, id: :a_value_again_rating %>
+			<div id='a-value-again-star'></div>
+			<script>
+				$('#a-value-again-star').raty({path: '/assets/', click: function(score, e) {
+				$("#a_value_again_rating").val(score)}});
+			</script>
+		</p>
+		<p><%= f.text_area :a_value_comment, class:"form-control", placeholder:"コメント" %></p>
+		<p><%= f.submit "納品", class:"btn btn-lg btn-block btn-base-1 mt-20" %></p>
+	<% end %>
+<% end %>
