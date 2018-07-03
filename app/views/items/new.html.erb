@@ -13,6 +13,7 @@
 	<p><%= f.attachment_field :item_img %></p>
 	<p><%= f.text_field :item_name, class:"form-control", placeholder:"商品名" %></p>
 	<p><%= f.text_area :item_introduct, class:"form-control", placeholder:"紹介文" %></p>
+	<p><%= f.text_area :item_attention, class:"form-control", placeholder:"注意点" %></p>
 	<p>添削条件設定</p>
 	<p>B4<%= f.check_box :item_limited_size_b4, {}, checked_value = "true", unchecked_value = "false" %>A4<%= f.check_box :item_limited_size_a4, {}, checked_value = "true", unchecked_value = "false" %></p>
 	<p><%= f.submit "送信", class:"btn btn-lg btn-block btn-base-1 mt-20" %></p>

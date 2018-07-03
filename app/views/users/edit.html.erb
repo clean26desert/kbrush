@@ -22,7 +22,9 @@
 				<p>添削イラスト名:<%= link_to active_illust_path(order.active_illust.id) do %><%= order.active_illust.a_illust_name %><% end %></p>
 				<p><%= link_to "評価", edit_active_illust_path(order.active_illust.id), class: "btn btn-success white-text" %></p>
 			<% elsif order.status == 3 %>取引完了です。
-		<% end %>
+				<p>添削イラスト画像:<%= link_to active_illust_path(order.active_illust.id) do %><%= attachment_image_tag order.active_illust, :a_illust_img, :fill, 100, 100 %><% end %></p>
+				<p>添削イラスト名:<%= link_to active_illust_path(order.active_illust.id) do %><%= order.active_illust.a_illust_name %><% end %></p>
+			<% end %>
 		</p>
 	<% end %>
 <% end %>
@@ -39,11 +41,13 @@
 			<% if order.status == 0 %>あなたからの応答を待っています。
 				<p><%= link_to "受注", order_path(order), method: :patch, class: "btn btn-primary white-text" %><%= link_to "断る", order_path(order), method: :delete, data: {confirm: "本当に注文番号<strong>#{order.id}</strong>を断ってよろしいですか？", cancel: "やめる", commit: "断る"}, title: "断りの確認", class: "btn btn-warning white-text" %></p>
 			<% elsif order.status == 1 %>あなたからの納品を待っています。
-				<p><%= link_to "納品", order_path(order.id), class: "btn btn-success white-text" %></p>
+				<p><%= link_to "納品", edit_order_path(order.id), class: "btn btn-success white-text" %></p>
 			<% elsif order.status == 2 %>購入者からの評価を待っています。
 				<p>添削イラスト画像:<%= link_to active_illust_path(order.active_illust.id) do %><%= attachment_image_tag order.active_illust, :a_illust_img, :fill, 100, 100 %><% end %></p>
 				<p>添削イラスト名:<%= link_to active_illust_path(order.active_illust.id) do %><%= order.active_illust.a_illust_name %><% end %></p>
 			<% elsif order.status == 3 %>取引完了です。
+				<p>添削イラスト画像:<%= link_to active_illust_path(order.active_illust.id) do %><%= attachment_image_tag order.active_illust, :a_illust_img, :fill, 100, 100 %><% end %></p>
+				<p>添削イラスト名:<%= link_to active_illust_path(order.active_illust.id) do %><%= order.active_illust.a_illust_name %><% end %></p>
 			<% end %>
 		</p>
 	<% end %>

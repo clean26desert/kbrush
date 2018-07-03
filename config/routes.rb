@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   #商品の購入
   #商品の管理
-  #後で消す.index
+  #開発で必要時に足す.items>index
   #後で足す.通知の作成
-  resources :items, only: [:new, :create, :show, :edit, :update, :index] do
+  resources :items, only: [:new, :create, :show, :edit, :update] do
     resources :orders, only: [:create]# do
     #  resources :informations, only: [:create]
     #end
@@ -35,8 +35,8 @@ Rails.application.routes.draw do
   #resources :informations, only: [:destroy]
 
   #商品の検索
-  get 'items/search' => 'items#search'
-  get 'items/search_result' => 'items#search_result'
+  get '/ransack' => 'items#ransack'
+  get '/ransack_result' => 'items#ransack_result'
 
   #後で足す.イラストの検索
 

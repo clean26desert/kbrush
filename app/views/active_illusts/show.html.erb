@@ -2,7 +2,7 @@
 <p>添削イラスト名:<%= @active_illust.a_illust_name %></p>
 <p>添削イラスト画像:<%= attachment_image_tag @active_illust, :a_illust_img, :fill, 300, 300 %></p>
 <p>添削イラストアドバイス:<%= @active_illust.advice %></p>
-<% if @active_illust.order.item.user.id == current_user.id %>
+<% if @active_illust.order.status == 3 %>
 	<p>出品者評価>依頼内容が明確:
 		<% if @active_illust.a_value_clear == 1 %>
 			<%= render './layouts/star1' %>
@@ -42,6 +42,88 @@
 			<%= render './layouts/star5' %>
 		<% end %>
 	</p>
+	<p>出品者コメント:<%= @active_illust.a_value_comment %></p>
+	<p>購入者評価>サービス内容が明確:
+		<% if @active_illust.p_value_clear == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.p_value_clear == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.p_value_clear == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.p_value_clear == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.p_value_clear == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	</p>
+	<p>購入者評価>依頼内容に合ったサービス:
+		<% if @active_illust.p_value_match == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.p_value_match == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.p_value_match == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.p_value_match == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.p_value_match == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	</p>
+	<p>購入者評価>再び取引したい:
+		<% if @active_illust.p_value_again == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.p_value_again == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.p_value_again == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.p_value_again == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.p_value_again == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	<p>購入者コメント:<%= @active_illust.p_value_comment %></p>
+	</p>
+<% elsif @active_illust.order.status == 2 && @active_illust.order.item.user.id == current_user.id %>
+	<p>出品者評価>依頼内容が明確:
+		<% if @active_illust.a_value_clear == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.a_value_clear == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.a_value_clear == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.a_value_clear == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.a_value_clear == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	</p>
+	<p>出品者評価>サービス内容に合った依頼:
+		<% if @active_illust.a_value_match == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.a_value_match == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.a_value_match == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.a_value_match == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.a_value_match == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	</p>
+	<p>出品者評価>再び取引したい:
+		<% if @active_illust.a_value_again == 1 %>
+			<%= render './layouts/star1' %>
+		<% elsif @active_illust.a_value_again == 2 %>
+			<%= render './layouts/star2' %>
+		<% elsif @active_illust.a_value_again == 3 %>
+			<%= render './layouts/star3' %>
+		<% elsif @active_illust.a_value_again == 4 %>
+			<%= render './layouts/star4' %>
+		<% elsif @active_illust.a_value_again == 5 %>
+			<%= render './layouts/star5' %>
+		<% end %>
+	</p>
+	<p>出品者コメント:<%= @active_illust.a_value_comment %></p>
 <% end %>
 <p>ユーザーネーム:<%= link_to user_path(@active_illust.order.item.user.id) do %><%= @active_illust.order.item.user.user_handle_name %><% end %></p>
 <p>ユーザー画像:<%= link_to user_path(@active_illust.order.item.user.id) do %><%= attachment_image_tag @active_illust.order.item.user, :user_img, :fill, 100, 100 %><% end %></p>

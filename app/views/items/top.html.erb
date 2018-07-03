@@ -11,8 +11,8 @@
 								<% if user_signed_in? %>
 			 						<p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
 									<!-- <p>通知</p> -->
-									<p><%= link_to '商品一覧(仮)', items_path %></p>
-									<!-- <p>検索(商品)</p> -->
+									<!-- <p><%= link_to '商品一覧(仮)', items_path %></p> -->
+									<p><%= link_to '検索(商品)', ransack_path %></p>
 									<p><%= link_to '投稿イラスト', new_alone_illust_path %></p>
 									<p><%= link_to '出品', new_item_path %></p>
 									<p><%= link_to 'マイページ', edit_user_path(@user) %></p>

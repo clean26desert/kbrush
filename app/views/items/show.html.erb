@@ -2,8 +2,15 @@
 <p>&yen;1,000
 	<% if @item.user_id != current_user.id %>
 		<%= form_for(@order, url: item_orders_path(@item)) do |f| %>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-illust">イラストの選択</button>
-			<%= f.submit "申込", data: {confirm: "本当に<strong>#{@item.item_name}</strong>を申し込みますか？", cancel: "やめる", commit: "申込"}, title: "申込の確認", class: "btn btn-success white-text" %>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-illust" id="select_alone_illust">イラストの選択</button>
+			<%= f.submit "申込", data: {confirm: "本当に<strong>#{@item.item_name}</strong>を申し込みますか？", cancel: "やめる", commit: "申込"}, title: "申込の確認", class: "btn btn-success white-text", id: "request" %>
+			<% if @alone_illusts.count != 0 %>
+				<script type="text/javascript">$("#select_alone_illust").prop("disabled", false);</script>
+				<script type="text/javascript">$("#request").prop("disabled", false);</script>
+			<% else %>
+				<script type="text/javascript">$("#select_alone_illust").prop("disabled", true);</script>
+				<script type="text/javascript">$("#request").prop("disabled", true);</script>
+			<% end %>
 			<div class="modal-fade" id="select-illust" tabindex="-1" role="dialog" aria-labelledby="select-illustLabel" aria-hidden="true">
 				<div class="modal-dialog" style="z-index: 1500" role="document">
 					<div class="modal-content" style="width:800px; margin-left: -100px;"><!-- デフォルトのwide600px,上回ると右に伸びるのでその分だけ左に寄せる -->
@@ -33,8 +40,17 @@
 <p>商品名:<%= @item.item_name %></p>
 <p>商品画像:<%= attachment_image_tag @item, :item_img, :fill, 300, 300 %></p>
 <p>商品紹介文:<%= @item.item_introduct %></p>
+<p>商品注意点:<%= @item.item_attention %></p>
 <p>添削条件設定</p>
 <p>B4:<% if @item.item_limited_size_b4 == true %>○<% else %>×<% end %>A4:<% if @item.item_limited_size_a4 == true %>○<% else %>×<% end %></p>
 <p>ユーザーネーム:<%= link_to user_path(@item.user.id) do %><%= @item.user.user_handle_name %><% end %></p>
 <p>ユーザー画像:<%= link_to user_path(@item.user.id) do %><%= attachment_image_tag @item.user, :user_img, :fill, 100, 100 %><% end %></p>
 <p>作成日時:<%= @item.created_at.strftime('%Y/%m/%d') %></p>
+
+<h3>添削イラスト</h3>
+<% @item.orders.each do |order| %>
+	<% if order.status == 3 %>
+		<p>添削イラスト画像:<%= link_to active_illust_path(order.active_illust.id) do %><%= attachment_image_tag order.active_illust, :a_illust_img, :fill, 100, 100 %><% end %></p>
+		<p>添削イラスト名:<%= link_to active_illust_path(order.active_illust.id) do %><%= order.active_illust.a_illust_name %><% end %></p>
+	<% end %>
+<% end %>

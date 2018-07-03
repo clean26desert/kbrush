@@ -1,13 +1,19 @@
 class ActiveIllustsController < ApplicationController
+	before_action :authenticate_user!, only: [:create, :edit, :update]
 
 	def create
 	    order = Order.find(params[:order_id])
 		active_illust = ActiveIllust.new(active_illust_params)
 		active_illust.order_id = order.id
-		active_illust.save
-
-		order.update(status: 2)
-		redirect_to edit_user_path(current_user)
+		if active_illust.save
+			order.update(status: 2)
+			redirect_to edit_user_path(current_user)
+		else
+			@order = order
+			@active_illust = ActiveIllust.new
+			flash.now[:alert] = "全ての項目を入力してください"
+			render "orders/edit"
+		end
 	end
 
 	def show
@@ -19,6 +25,13 @@ class ActiveIllustsController < ApplicationController
 	end
 
 	def update
+	    active_illust = ActiveIllust.find(params[:id])
+		active_illust.update(active_illust_params)
+
+	    order = Order.find(params[:order_id])
+
+		order.update(status: 3)
+		redirect_to edit_user_path(current_user)
 	end
 
     private
