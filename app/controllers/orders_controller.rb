@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+	before_action :authenticate_user!
+
 	def create
 	    item = Item.find(params[:item_id])
 		order = Order.new(order_params)
@@ -9,14 +11,14 @@ class OrdersController < ApplicationController
 
 	def show
 		#status0~3で場合分け
-		@order = Order.find(params[:id])
-		if @order.status == 1
-			@active_illust = ActiveIllust.new
-		end
 	end
 
 	def edit
 		#status0~3で場合分け
+		@order = Order.find(params[:id])
+		if @order.status == 1
+			@active_illust = ActiveIllust.new
+		end
 	end
 
 	def update

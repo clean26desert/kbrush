@@ -1,4 +1,5 @@
 class AloneIllustsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create]
 
 	def new
 		@alone_illust = AloneIllust.new
@@ -7,8 +8,11 @@ class AloneIllustsController < ApplicationController
 	def create
 		@alone_illust = AloneIllust.new(alone_illust_params)
 		@alone_illust.user_id = current_user.id
-		@alone_illust.save
-		redirect_to root_path
+		if @alone_illust.save
+			redirect_to root_path
+		else
+			render :new
+		end
 	end
 
 	def show

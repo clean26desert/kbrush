@@ -1,1 +1,32 @@
 <h2>active_illusts.edit.html.erb</h2>
+
+<% if @active_illust.order.status == 2 && @active_illust.order.alone_illust.user.id == current_user.id %>
+	<%= form_for(@active_illust, url: order_active_illust_path(@active_illust.order), method: :patch) do |f| %>
+		<p>サービス内容が明確
+			<%= f.hidden_field :p_value_clear, id: :p_value_clear_rating %>
+			<div id='p-value-clear-star'></div>
+			<script>
+				$('#p-value-clear-star').raty({path: '/assets/', click: function(score, e) {
+				$("#p_value_clear_rating").val(score)}});
+			</script>
+		</p>
+		<p>依頼内容に合ったサービス
+			<%= f.hidden_field :p_value_match, id: :p_value_match_rating %>
+			<div id='p-value-match-star'></div>
+			<script>
+				$('#p-value-match-star').raty({path: '/assets/', click: function(score, e) {
+				$("#p_value_match_rating").val(score)}});
+			</script>
+		</p>
+		<p>再び取引したい
+			<%= f.hidden_field :p_value_again, id: :p_value_again_rating %>
+			<div id='p-value-again-star'></div>
+			<script>
+				$('#p-value-again-star').raty({path: '/assets/', click: function(score, e) {
+				$("#p_value_again_rating").val(score)}});
+			</script>
+		</p>
+		<p><%= f.text_area :p_value_comment, class:"form-control", placeholder:"コメント" %></p>
+		<p><%= f.submit "評価", class:"btn btn-lg btn-block btn-base-1 mt-20" %></p>
+	<% end %>
+<% end %>

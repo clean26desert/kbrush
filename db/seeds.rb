@@ -22,3 +22,6 @@ Order.create(:item_id => 1, :alone_illust_id => 1, :status => 0)
 Order.create(:item_id => 1, :alone_illust_id => 1, :status => 0)
 Order.create(:item_id => 2, :alone_illust_id => 1, :status => 0)
 Order.create(:item_id => 2, :alone_illust_id => 2, :status => 0)
+Order.create(:item_id => 2, :alone_illust_id => 2, :status => 2)
+
+ActiveIllust.create(:a_illust_img => Rails.root.join("./app/assets/images/bg_rain_natural_mori.jpg").open, :a_illust_name => "添削イラスト1", :advice => "アドバイス1", :a_value_clear => 5, :a_value_match => 4, :a_value_again => 3, :a_value_comment => "コメント1", :p_value_clear => 1, :p_value_match => 1, :p_value_again => 1, :p_value_comment => "", :order_id => 5)

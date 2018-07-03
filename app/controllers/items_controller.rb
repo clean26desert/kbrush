@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create]
 
 	def top
 		@user = current_user
@@ -11,11 +12,15 @@ class ItemsController < ApplicationController
 	def create
 		@item = Item.new(item_params)
 		@item.user_id = current_user.id
-		@item.save
-		redirect_to root_path
+		if @item.save
+			redirect_to root_path
+		else
+			render :new
+		end
 	end
 
 	def show
+		# if文でcurrent_userを逃がさないとログアウト時に閲覧不可
 		@item = Item.find(params[:id])
 		@alone_illusts = current_user.alone_illusts
 		@order = Order.new
@@ -27,14 +32,17 @@ class ItemsController < ApplicationController
 	def update
 	end
 
-	def index
-		@items = Item.all
+	# def index
+	# 	@items = Item.all
+	# end
+
+	def ransack
+	    @q = Item.ransack(params[:q])
 	end
 
-	def search
-	end
-
-	def search_result
+	def ransack_result
+	    @q = Item.ransack(params[:q])
+	    @items = @q.result(distinct: true)
 	end
 
     private
